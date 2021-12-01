@@ -1,5 +1,8 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
-import { LoggingService } from '../../LoggingService.Service';
+//import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import {NgForm} from '@angular/forms'
+//import { LoggingService } from '../../LoggingService.Service';
 import { Persona } from '../../persona.model';
 import { PersonasService } from '../../personas.service';
 
@@ -7,7 +10,7 @@ import { PersonasService } from '../../personas.service';
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
-  })
+  }) 
 export class FormularioComponent {
 
   //@Output() personaCreada= new EventEmitter <Persona>();
@@ -15,10 +18,9 @@ export class FormularioComponent {
   nombreInput:string= '';
   apellidoInput:string='';
 
-  //@ViewChild('nombreInput') nombreInput: ElementRef;//(nombreInput)-->nombre de la referencia local | nombreInput --> nombre del atributo
-  //@ViewChild('apellidoInput') apellidoInput: ElementRef;
+  
 
-  constructor(private loggingService:LoggingService, private personasService:PersonasService){
+  constructor( private personasService:PersonasService, private router:Router){
 
       this.personasService.saludar.subscribe(
         (indice:number)=>alert("el indice es "+indice)
@@ -26,11 +28,12 @@ export class FormularioComponent {
 
   }
 
-  agregarPersona(){
-    let persona1=new Persona(this.nombreInput, this.apellidoInput
-      );
+  onGuardarPersona(){
+    
+    let persona1=new Persona(this.nombreInput, this.apellidoInput);
     //this.loggingService.enviarMensajeAConsola("enviamos persona "+ persona1.nombre + persona1.apellido);
     //this.personaCreada.emit(persona1);
-    this.personasService.personaAgregada(persona1)
+    this.personasService.personaAgregada(persona1);
+    this.router.navigate(['personas'])
   }
 }
