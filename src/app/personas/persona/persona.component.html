@@ -1,7 +1,12 @@
 
 <div class="item">
-    <input type="checkbox" (click)="emitirSaludo()">
-    {{indice+1}}: {{persona.nombre}} {{persona.apellido}}
-    
-</div>
+    <ul>
+        <li>
+            <!-- se usa routerlink como property binding ya que queremos pasar parametros -->
+            <a [routerLink]="['/personas',indice]" [queryParams]="{modoEdicion:'1'}">
+                {{persona.nombre}} {{persona.apellido}}
+            </a>
+        </li>
+    </ul>
+</div> 
         
