@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import { LoggingService } from './LoggingService.Service';
-import { Persona } from './persona.model';
-import { PersonasService } from './personas.service';
+import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +8,9 @@ import { PersonasService } from './personas.service';
 })
 export class AppComponent implements OnInit{
   titulo = 'Listado Personas';
-  personas:Persona[]=[];
   
-  constructor(private personasService:PersonasService){}
-  ngOnInit(): void {
-    this.personas= this.personasService.personas;
-  }
+  constructor(){}
+
+  ngOnInit(): void {}
 
 }

@@ -29,8 +29,15 @@ export class PersonasService{
       let persona1 = this.personas[index];
       persona1.nombre = persona.nombre;
       persona1.apellido = persona.apellido;
+      this.dataService.modificarPersona(index,persona);
     }
     eliminarPersona(index:number){
       this.personas.splice(index,1);
+      this.dataService.eliminarPersona(index);
+      //se vuelve a guardar el arreglo de personas dado un mal desarrollo en cuanto a los indices del array de la base de datos
+      this.modificarPersonas();
+    }
+    modificarPersonas(){
+      this.dataService.guardarPersonas(this.personas);
     }
 }
